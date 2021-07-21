@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    height: 100vh;
+    background-color:white;
+    font-family: "Inter", sans-serif;
+  }
+header{
+    background-color: white;
+    height: 70px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+}
+
+#loading {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #3d3b3f;
+  border-radius: 100%;
+  margin: 10rem auto;
+  display: none;
+  animation: spin 1s infinite linear;
+}
+
+#loading.display {
+  display: block;
+}
+.heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+} 
+
+.tittle-image{
+  width: 4%;
+}
+.container {
+    font-family: "Inter", sans-serif;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 50px;
+    margin-top: 100px;
+  }
+  
+  @media only screen and (max-width: 420px){
+      .container{
+        place-items: center;
+      }
+      .heading{
+        margin-top: 15px;
+      }
+      .tittle-image{
+        width:10%;
+      }
+  }
+
+  @media (min-width: 440px) {
+    .container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  /* small laptop */
+  @media (min-width: 760px) {
+    .container {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 30px;
+    }
+  }
+
+
+
+.box{
+    width: 20%;
+    min-width: 300px;
+    gap: 20px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+
+.product-image{
+    width: 100%;
+    padding: 0;
+    border-radius: 15px;
+    
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.title{
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.brand-name{
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+
+.des-title{
+    line-height: 50px;
+}
+
+.des-text{
+    font-weight: 300;
+    line-height: 18px;
+    font-size: 13.5px;
+}
+
+.product-link{
+    margin-top: 30px;
+    width: 100%;
+    background: #3d3b3f;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 7px;
+    font-weight: bold;
+}
+
+.product-link:hover{
+  transform: scale(1.02);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
