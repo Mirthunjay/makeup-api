@@ -24,7 +24,8 @@ async function getData(){
         );
     const products = await data.json();
     loader.classList.remove("display");
-    loadData(products);
+    loadData((products.slice(0,100))); 
+    // To Speed My Rendering time I have silice to display 100 products 
     }catch (error) {
         console.log("Page Not Found : ", error);
       }
