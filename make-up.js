@@ -20,7 +20,7 @@ loader.classList.add("display");
 async function getData(){
     try{
     const data = await fetch(
-        "http://makeup-api.herokuapp.com/api/v1/products.json",
+        "https://makeup-api.herokuapp.com/api/v1/products.json",
         {
         method:"GET"
         }
