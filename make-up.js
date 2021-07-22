@@ -3,16 +3,21 @@
 const div = document.createElement('div');
 div.className="container";
 document.body.append(div); 
-const header = document.createElement('div');
+const header = document.querySelector('.header');
 header.innerHTML=`<div class="heading">
 <img class="tittle-image" src="./title-image.png">
 <h2>Beauty Woman</h2>
 </div>
 `
-const headerTag = document.querySelector('.header');
-headerTag.append(header);
-const loader = document.querySelector("#loading");
-loader.classList.add("display");
+const load = document.createElement('div');
+load.className='load';
+load.innerHTML=`
+<div id="loading"></div>
+<p class="loading-text">"Be your own kind of beautiful"</p>
+</div>
+`
+
+
 
 
 
@@ -20,12 +25,14 @@ loader.classList.add("display");
 async function getData(){
     try{
     const data = await fetch(
-        "https://makeup-api.herokuapp.com/api/v1/products.json"
+        "https://makeup-api.herokuapp.com/api/v1/products.json",
+        {
+        method:"GET"
+        }
         );
     const products = await data.json();
-    loader.classList.remove("display");
-    loadData((products.slice(0,100))); 
-    // To Speed My Rendering time I have silice to display 100 products 
+    load.remove();
+    loadData((products.slice(0,500))); // To speed up my rendering process i made to display 500 datas 
     }catch (error) {
         console.log("Page Not Found : ", error);
       }
@@ -36,32 +43,35 @@ function loadData(products){
     products.forEach(products => {
         div.innerHTML+=
             `<div class=box>
-             <img class=product-image src=${products.image_link} onerror="this.src='./benefit-cosmetics-brow-styler.png'">
+             <img class=product-image src=${products.api_featured_image}">
              <div class=product-details>
              <h3>${products.name}</h3>
-             <p class="brand-name"><span class="title">Brand : </span>${products.brand}</p>
-             <p><span class="title">Price : $ </span>${products.price}</p>
+             <p class="brand-name">${products.brand}</p>
+             <div class="buy-now">
+             <p class="price"><span class="title">Price : $ </span>${products.price} USD </p>
+             <a class="product-link" href="${products.product_link}">Buy Now</a>
+             </div>
+             <div class="description">
              <p><span class="title des-title">Description :</span><br>
              <span class="des-text">${products.description}</span></p>
-             <button class="product-link" onClick="productLink('${products.product_link}')">Product Link</button>
+             </div>
              </div>
              </div>`;
     });
 }
-
+//<button class="product-link" onclick="productLink('${products.product_link}')">Product Link</button>
 // Product link Redirecting ...
-function productLink(url){
-    window.open(url);
-    console.log('product Link....',url);
-}
+// function productLink(url){
+//     window.open(url);
+//     console.log('product Link....',url);
+// }
 
 
 
 // Calling the Function
-
+const main = document.querySelector(".main")
 getData();
-const main = document.querySelector(".main");
-
+main.append(load);
 main.append(div);
 
 
